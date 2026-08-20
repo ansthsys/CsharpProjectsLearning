@@ -1,8 +1,10 @@
-using System;
-
 namespace Classes_M3;
 
-public class BankCustomer
+
+using System;
+
+
+public partial class BankCustomer
 {
     private static int s_nextCustomerId;
     private string _firstName = "Tim";
@@ -33,24 +35,14 @@ public class BankCustomer
         LastName = lastName;
         this.CustomerId = (s_nextCustomerId++).ToString("D10");
     }
-
-    // Method to return the full name of the customer
-    public string ReturnFullName()
+    // Copy constructor for BankCustomer
+    public BankCustomer(BankCustomer existingCustomer)
     {
-        return $"{FirstName} {LastName}";
-    }
 
-    // Method to update the customer's name
-    public void UpdateName(string firstName, string lastName)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-    }
+        this.FirstName = existingCustomer.FirstName;
+        this.LastName = existingCustomer.LastName;
+        //this.CustomerId = existingCustomer.CustomerId;
+        this.CustomerId = (s_nextCustomerId++).ToString("D10");
 
-    // Method to display customer information
-    public string DisplayCustomerInfo()
-    {
-        return $"Customer ID: {CustomerId}, Name: {ReturnFullName()}";
     }
-
 }
