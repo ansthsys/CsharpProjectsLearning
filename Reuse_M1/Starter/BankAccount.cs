@@ -7,7 +7,6 @@ public class BankAccount : IBankAccount
     private static int s_nextAccountNumber;
 
     // Public read-only static properties
-    public static double InterestRate { get; private set; }
     public static double TransactionRate { get; private set; }
     public static double MaxTransactionFee { get; private set; }
     public static double OverdraftRate { get; private set; }
@@ -17,13 +16,12 @@ public class BankAccount : IBankAccount
     public string CustomerId { get; }
     public double Balance { get; internal set; } = 0;
     public string AccountType { get; set; } = "Checking";
-
+    public virtual double InterestRate { get; protected set; } // Virtual property to allow overriding in derived classes
 
     static BankAccount()
     {
         Random random = new Random();
         s_nextAccountNumber = random.Next(10000000, 20000000);
-        InterestRate = 0.00; // Default interest rate for checking accounts
         TransactionRate = 0.01; // Default transaction rate for wire transfers and cashier's checks
         MaxTransactionFee = 10; // Maximum transaction fee for wire transfers and cashier's checks
         OverdraftRate = 0.05; // Default penalty rate for an overdrawn checking account (negative balance)
@@ -57,7 +55,7 @@ public class BankAccount : IBankAccount
     }
 
     // Method to withdraw money from the account
-    public bool Withdraw(double amount)
+    public virtual bool Withdraw(double amount)
     {
         if (amount > 0 && Balance >= amount)
         {
@@ -103,8 +101,8 @@ public class BankAccount : IBankAccount
     }
 
     // Method to display account information
-    public string DisplayAccountInfo()
+    public virtual string DisplayAccountInfo()
     {
-        return $"Account Number: {AccountNumber}, Type: {AccountType}, Balance: {Balance}, Interest Rate: {InterestRate}, Customer ID: {CustomerId}";
+        return $"Account Number: {AccountNumber}, Type: {AccountType}, Balance: {Balance:C}, Interest Rate: {InterestRate:P}, Customer ID: {CustomerId}";
     }
 }
