@@ -2,7 +2,7 @@
 
 // This class is responsible for connecting to a database and retrieving data.
 // It is currently tightly coupled to the Application class.
-public class DatabaseAccess
+public class DatabaseAccess : IDataAccess
 {
     // Simulates connecting to a database.
     public void Connect()
