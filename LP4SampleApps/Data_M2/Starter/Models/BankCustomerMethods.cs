@@ -24,5 +24,8 @@ public partial class BankCustomer : IBankCustomer
     }
 
     // Task 3: Step 7 - Add account-management methods
-
+    public void AddAccount(IBankAccount account)
+    {
+        _accounts.Add(account);
+    }
 }

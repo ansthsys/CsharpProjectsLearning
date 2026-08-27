@@ -67,7 +67,14 @@ public class SimulateDepositsWithdrawalsTransfers
     {
 
         // Task 5: Step 1 - Reset withdrawal limits for savings accounts at the start of the month
-
+        foreach (BankAccount account in bankCustomer.Accounts)
+        {
+            if (account.AccountType == "Savings")
+            {
+                SavingsAccount savingsAccount = (SavingsAccount)account;
+                savingsAccount.ResetWithdrawalLimit();
+            }
+        }
 
         double[] monthlyExpenses = ReturnMonthlyExpenses();
 
@@ -211,7 +218,18 @@ public class SimulateDepositsWithdrawalsTransfers
         }
 
         // Task 5: Step 2 - Check account balance and perform transfers between checking and savings accounts at the end of the month
-
+        DateOnly dateFinalDayOfMonth = new DateOnly(endDate.Year, endDate.Month, DateTime.DaysInMonth(endDate.Year, endDate.Month));
+        if (startDate <= dateFinalDayOfMonth && dateFinalDayOfMonth <= endDate)
+        {
+            if (bankCustomer.Accounts[0].Balance <= minCheckingBalance)
+            {
+                transactions.Add(new TransactionInfo { Date = dateFinalDayOfMonth, Time = new TimeOnly(12, 00), Amount = transferToChecking, Description = "Transfer from savings to checking account", TransactionType = "Transfer" });
+            }
+            else if (bankCustomer.Accounts[0].Balance >= maxCheckingBalance)
+            {
+                transactions.Add(new TransactionInfo { Date = dateFinalDayOfMonth, Time = new TimeOnly(12, 00), Amount = transferToSavings, Description = "Transfer from checking to savings account", TransactionType = "Transfer" });
+            }
+        }
 
 
         // Sort transactions by date and time
@@ -222,7 +240,25 @@ public class SimulateDepositsWithdrawalsTransfers
         {
 
             // Task 5: Step 3 - Update accounts for each transaction based on its type
-
+            if (transaction.TransactionType == "Deposit")
+            {
+                bankCustomer.Accounts[0].Deposit(transaction.Amount, transaction.Date, transaction.Time, transaction.Description);
+            }
+            else if (transaction.TransactionType == "Withdraw")
+            {
+                bankCustomer.Accounts[0].Withdraw(transaction.Amount, transaction.Date, transaction.Time, transaction.Description);
+            }
+            else if (transaction.TransactionType == "Transfer")
+            {
+                if (transaction.Description.Contains("savings to checking"))
+                {
+                    bankCustomer.Accounts[1].Transfer(bankCustomer.Accounts[0], transaction.Amount, transaction.Date, transaction.Time, transaction.Description);
+                }
+                else if (transaction.Description.Contains("checking to savings"))
+                {
+                    bankCustomer.Accounts[0].Transfer(bankCustomer.Accounts[1], transaction.Amount, transaction.Date, transaction.Time, transaction.Description);
+                }
+            }
 
 
         }

@@ -43,8 +43,8 @@ public class CheckingAccount : BankAccount
                 string transactionType = "Withdraw";
 
                 // Task 4: Step 8a - Create withdrawal transaction
-                
-                
+                AddTransaction(new Transaction(transactionDate, transactionTime, priorBalance, amount, AccountNumber, AccountNumber, transactionType, description));
+
 
                 priorBalance = Balance;
                 Balance -= overdraftFee;
@@ -52,7 +52,7 @@ public class CheckingAccount : BankAccount
                 string overdraftDescription = "Overdraft fee applied";
 
                 // Task 4: Step 8b - Create overdraft fee transaction
-                
+                AddTransaction(new Transaction(transactionDate, transactionTime, priorBalance, overdraftFee, AccountNumber, AccountNumber, transactionType, overdraftDescription));
 
 
                 return true;

@@ -11,7 +11,7 @@ public partial class BankCustomer : IBankCustomer
     private string _lastName = "Shao";
 
     // TASK 3: Step 3 - declare the Accounts field
-    
+    private readonly List<IBankAccount> _accounts;
 
     public string CustomerId { get; }
 
@@ -29,7 +29,7 @@ public partial class BankCustomer : IBankCustomer
 
 
     // TASK 3: Step 4 - expose the Accounts property
-    
+    public IReadOnlyList<IBankAccount> Accounts => _accounts.AsReadOnly();
 
     static BankCustomer()
     {
@@ -44,7 +44,7 @@ public partial class BankCustomer : IBankCustomer
         this.CustomerId = (s_nextCustomerId++).ToString("D10");
 
         // TASK 3: Step 5 - initialize the Accounts field
-        
+        _accounts = new List<IBankAccount>();
     }
 
     // Copy constructor for BankCustomer
@@ -55,6 +55,6 @@ public partial class BankCustomer : IBankCustomer
         this.CustomerId = (s_nextCustomerId++).ToString("D10");
 
         // TASK 3: Step 6 - initialize the Accounts field by copying from existingCustomer
-        
+        _accounts = new List<IBankAccount>(existingCustomer._accounts);
     }
 }

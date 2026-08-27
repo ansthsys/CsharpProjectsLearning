@@ -9,7 +9,7 @@ public class BankAccount : IBankAccount
     protected double priorBalance;
 
     // Task 4: Step 3 - define a private readonly list to store transactions
-
+    private readonly List<Transaction> _transactions;
 
     // Public read-only static properties
     public static double TransactionRate { get; private set; }
@@ -25,7 +25,7 @@ public class BankAccount : IBankAccount
     public BankCustomer Owner { get; }
 
     // Task 4: Step 4 - Add a readonly Transactions property
-
+    public IReadOnlyList<Transaction> Transactions => _transactions.AsReadOnly();
 
     static BankAccount()
     {
@@ -44,9 +44,9 @@ public class BankAccount : IBankAccount
         this.CustomerId = customerIdNumber;
         this.Balance = balance;
         this.AccountType = accountType;
-    
-        // Task 4: Step 5a - Initialize the transactions list
 
+        // Task 4: Step 5a - Initialize the transactions list
+        _transactions = new List<Transaction>();
 
     }
 
@@ -61,13 +61,22 @@ public class BankAccount : IBankAccount
         this.AccountType = existingAccount.AccountType;
 
         // Task 4: Step 5b - Initialize the transactions list
-
+        _transactions = new List<Transaction>(existingAccount._transactions);
 
     }
 
 
     // TASK 4: Step 6 - Implement AddTransaction and GetAllTransactions methods
+    public void AddTransaction(Transaction transaction)
+    {
+        _transactions.Add(transaction);
+    }
 
+    // Method to return all transactions for the account
+    public List<Transaction> GetAllTransactions()
+    {
+        return _transactions;
+    }
 
 
     // Method to deposit money into the account
@@ -82,12 +91,13 @@ public class BankAccount : IBankAccount
             {
                 transactionType = "Transfer";
             }
-            else if(description.Contains("-(BANK REFUND)"))
+            else if (description.Contains("-(BANK REFUND)"))
             {
                 transactionType = "Bank Refund";
             }
-            
+
             // TASK 4: Step 7a - Add logic to log the deposit transaction
+            AddTransaction(new Transaction(transactionDate, transactionTime, priorBalance, amount, AccountNumber, AccountNumber, transactionType, description));
 
 
         }
@@ -111,6 +121,7 @@ public class BankAccount : IBankAccount
             }
 
             // TASK 4: Step 7b - Add logic to log the withdrawal transaction
+            AddTransaction(new Transaction(transactionDate, transactionTime, priorBalance, amount, AccountNumber, AccountNumber, transactionType, description));
 
 
             return true;
@@ -138,6 +149,7 @@ public class BankAccount : IBankAccount
         Balance += interest;
 
         // TASK 4: Step 7c - Add logic to log the interest transaction
+        AddTransaction(new Transaction(transactionDate, transactionTime, priorBalance, interest, AccountNumber, AccountNumber, AccountType, "Interest"));
 
 
     }
@@ -148,7 +160,8 @@ public class BankAccount : IBankAccount
         priorBalance = Balance;
         Balance += refund;
         // TASK 4: Step 7d - Add logic to log the refund transaction
-    
+        AddTransaction(new Transaction(transactionDate, transactionTime, priorBalance, refund, AccountNumber, AccountNumber, AccountType, "Refund"));
+
 
     }
 
@@ -163,7 +176,9 @@ public class BankAccount : IBankAccount
             Balance -= fee;
 
             // TASK 4: Step 7e - Add logic to log the cashier's check transaction
-        
+            AddTransaction(new Transaction(transactionDate, transactionTime, priorBalance, amount, AccountNumber, AccountNumber, AccountType, "Cashier's Check"));
+            AddTransaction(new Transaction(transactionDate, transactionTime, priorBalance, fee, AccountNumber, AccountNumber, AccountType, "Transaction Fee"));
+
 
             return true;
         }
