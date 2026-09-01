@@ -1,0 +1,101 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "TransactionId": "8354eb0e-98a5-4363-b9dc-90dcdb6ef388",
+      "TransactionType": "Transfer",
+      "TransactionDate": "2024-08-31",
+      "TransactionTime": "12:00:00",
+      "PriorBalance": 15000,
+      "TransactionAmount": 800,
+      "SourceAccountNumber": 10378838,
+      "TargetAccountNumber": 10378838,
+      "Description": "Transfer from checking to savings account-(TRANSFER)"
+    },
+    {
+      "$id": "3",
+      "TransactionId": "be765329-1dd6-4fc3-8dad-0ef33a55791d",
+      "TransactionType": "Transfer",
+      "TransactionDate": "2024-09-16",
+      "TransactionTime": "08:00:00",
+      "PriorBalance": 15800,
+      "TransactionAmount": 1400,
+      "SourceAccountNumber": 10378838,
+      "TargetAccountNumber": 10378838,
+      "Description": "free overdraft protection-(TRANSFER)-(TRANSFER)"
+    },
+    {
+      "$id": "4",
+      "TransactionId": "280c70da-783e-4335-8885-e5d4ab1f6f80",
+      "TransactionType": "Transfer",
+      "TransactionDate": "2024-10-31",
+      "TransactionTime": "12:00:00",
+      "PriorBalance": 14400,
+      "TransactionAmount": 700,
+      "SourceAccountNumber": 10378838,
+      "TargetAccountNumber": 10378838,
+      "Description": "Transfer from checking to savings account-(TRANSFER)"
+    },
+    {
+      "$id": "5",
+      "TransactionId": "ef4175d4-d74f-4aba-a879-f0921c06b941",
+      "TransactionType": "Transfer",
+      "TransactionDate": "2024-11-04",
+      "TransactionTime": "08:00:00",
+      "PriorBalance": 15100,
+      "TransactionAmount": 1400,
+      "SourceAccountNumber": 10378838,
+      "TargetAccountNumber": 10378838,
+      "Description": "free overdraft protection-(TRANSFER)-(TRANSFER)"
+    },
+    {
+      "$id": "6",
+      "TransactionId": "faec517e-c9ed-46af-83b0-1c9d6051e23d",
+      "TransactionType": "Transfer",
+      "TransactionDate": "2025-03-03",
+      "TransactionTime": "08:00:00",
+      "PriorBalance": 13700,
+      "TransactionAmount": 1400,
+      "SourceAccountNumber": 10378838,
+      "TargetAccountNumber": 10378838,
+      "Description": "free overdraft protection-(TRANSFER)-(TRANSFER)"
+    },
+    {
+      "$id": "7",
+      "TransactionId": "76119ce7-5a84-431b-9ded-bbb08c42fd12",
+      "TransactionType": "Transfer",
+      "TransactionDate": "2025-08-04",
+      "TransactionTime": "08:00:00",
+      "PriorBalance": 12300,
+      "TransactionAmount": 1400,
+      "SourceAccountNumber": 10378838,
+      "TargetAccountNumber": 10378838,
+      "Description": "free overdraft protection-(TRANSFER)-(TRANSFER)"
+    },
+    {
+      "$id": "8",
+      "TransactionId": "9e660f0a-96b8-47fa-8912-b08fcaad1042",
+      "TransactionType": "Transfer",
+      "TransactionDate": "2025-12-08",
+      "TransactionTime": "08:00:00",
+      "PriorBalance": 10900,
+      "TransactionAmount": 1400,
+      "SourceAccountNumber": 10378838,
+      "TargetAccountNumber": 10378838,
+      "Description": "free overdraft protection-(TRANSFER)-(TRANSFER)"
+    },
+    {
+      "$id": "9",
+      "TransactionId": "a7d4c3e7-55a2-474f-a105-c0480e01bca6",
+      "TransactionType": "Transfer",
+      "TransactionDate": "2026-08-31",
+      "TransactionTime": "12:00:00",
+      "PriorBalance": 9500,
+      "TransactionAmount": 2304.75,
+      "SourceAccountNumber": 10378838,
+      "TargetAccountNumber": 10378838,
+      "Description": "free overdraft protection-(TRANSFER)-(TRANSFER)"
+    }
+  ]
+}
