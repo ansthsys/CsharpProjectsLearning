@@ -44,6 +44,7 @@ public class Bank
     internal BankCustomer? GetCustomerById(string customerId)
     {
         return _customers.FirstOrDefault(customer => customer.CustomerId.Equals(customerId, StringComparison.OrdinalIgnoreCase));
+
     }
 
     internal int GetNumberOfTransactions()
@@ -121,5 +122,10 @@ public class Bank
     internal void RemoveCustomer(BankCustomer customer)
     {
         _customers.Remove(customer);
+    }
+
+    internal void AddCustomers(IEnumerable<BankCustomer> customers)
+    {
+        _customers.AddRange(customers);
     }
 }
