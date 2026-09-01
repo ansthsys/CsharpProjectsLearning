@@ -40,6 +40,23 @@ public partial class BankCustomer : IBankCustomer
         _accounts = new List<IBankAccount>();
     }
 
+    // Constructor used to recover and restore an existing customer from back up
+    public BankCustomer(string firstName, string lastName, string customerId, Bank bank)
+    {
+        // Verify that the CustomerId isn't already in use
+        if (bank.GetCustomerById(customerId) == null)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            this.CustomerId = customerId;
+            _accounts = new List<IBankAccount>();
+        }
+        else
+        {
+            throw new ArgumentException("Customer ID already in use");
+        }
+    }
+
     // Copy constructor for BankCustomer
     public BankCustomer(BankCustomer existingCustomer)
     {

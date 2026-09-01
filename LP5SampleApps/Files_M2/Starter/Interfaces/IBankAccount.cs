@@ -6,6 +6,7 @@ public interface IBankAccount
     string CustomerId { get; }
     double Balance { get; }
     string AccountType { get; }
+    double InterestRate { get; }    
     BankCustomer Owner { get; } // This is the BankCustomer object that owns the account
     IReadOnlyList<Transaction> Transactions { get; } // List of transactions for the account
     
